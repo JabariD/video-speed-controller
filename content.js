@@ -86,6 +86,7 @@
       return;
     }
 
+    if (!e.key) return;
     const key = e.key.toLowerCase();
     if (key === 'd') {
       globalPlaybackRate = Math.min(globalPlaybackRate + SPEED_STEP, MAX_SPEED);
