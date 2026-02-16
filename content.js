@@ -39,6 +39,14 @@
     };
     
     videoStates.set(video, state);
+
+    // Re-apply speed if it changes (e.g. YouTube resets it on new video)
+    video.addEventListener('ratechange', () => {
+      if (video.playbackRate !== globalPlaybackRate) {
+        updateVideoSpeed(video, globalPlaybackRate);
+      }
+    });
+
     return container;
   }
 
@@ -120,15 +128,17 @@
 
     observer.observe(document.body, { childList: true, subtree: true });
     
-    // Periodically check for videos that might have been missed or re-added by complex players
+    // Periodically check for videos that might have been missed or have wrong speed
     setInterval(() => {
       document.querySelectorAll('video').forEach(v => {
         if (!videoStates.has(v)) {
           createIndicator(v);
           updateVideoSpeed(v, globalPlaybackRate);
+        } else if (v.playbackRate !== globalPlaybackRate) {
+          updateVideoSpeed(v, globalPlaybackRate);
         }
       });
-    }, 2000);
+    }, 1000);
   }
 
   // Run on load
