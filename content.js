@@ -85,6 +85,9 @@
     } else if (key === 's') {
       globalPlaybackRate = Math.max(globalPlaybackRate - SPEED_STEP, MIN_SPEED);
       applyGlobalSpeed();
+    } else if (key === 'r') {
+      globalPlaybackRate = 1.0;
+      applyGlobalSpeed();
     }
   }
 

@@ -14,6 +14,7 @@ A minimal, "ghost-UI" Chrome extension to control HTML5 video playback rates wit
 
 - **`d`**: Increase speed by **0.1x**
 - **`s`**: Decrease speed by **0.1x**
+- **`r`**: Reset speed to **1.0x**
 
 ## Installation
 
