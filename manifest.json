@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Integrated Video Speed Controller",
+  "version": "1.0",
+  "description": "Faint, integrated speed control for HTML5 videos using 's' and 'd' keys.",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "all_frames": true
+    }
+  ]
+}
