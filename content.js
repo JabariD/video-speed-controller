@@ -16,9 +16,34 @@
     
     const badge = document.createElement('div');
     badge.className = 'vsc-indicator-badge';
-    badge.innerText = `${globalPlaybackRate.toFixed(2)}x`;
-    
+    badge.innerText = `${globalPlaybackRate.toFixed(1)}x`;
+
+    const minusBtn = document.createElement('button');
+    minusBtn.className = 'vsc-btn vsc-btn-minus';
+    minusBtn.innerText = '−';
+    minusBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (globalPlaybackRate <= 1) {
+        globalPlaybackRate = Math.max(globalPlaybackRate - SPEED_STEP, MIN_SPEED);
+      } else {
+        globalPlaybackRate = Math.max(globalPlaybackRate - 1, MIN_SPEED);
+      }
+      globalPlaybackRate = Math.round(globalPlaybackRate * 10) / 10;
+      applyGlobalSpeed();
+    });
+
+    const plusBtn = document.createElement('button');
+    plusBtn.className = 'vsc-btn vsc-btn-plus';
+    plusBtn.innerText = '+';
+    plusBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      globalPlaybackRate = Math.min(globalPlaybackRate + 1, MAX_SPEED);
+      applyGlobalSpeed();
+    });
+
+    container.appendChild(minusBtn);
     container.appendChild(badge);
+    container.appendChild(plusBtn);
 
     // Try to find a suitable parent. Most players have a container.
     // If we append to the video directly, it doesn't always show.
@@ -55,7 +80,7 @@
     
     const state = videoStates.get(video);
     if (state) {
-      state.badge.innerText = `${rate.toFixed(2)}x`;
+      state.badge.innerText = `${rate.toFixed(1)}x`;
       
       // Visual feedback
       state.indicator.classList.add('vsc-active');

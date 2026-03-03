@@ -4,7 +4,7 @@ A minimal, "ghost-UI" Chrome extension to control HTML5 video playback rates wit
 
 ## Features
 
-- **Integrated UI**: A faint speed indicator (e.g., `1.10x`) appears in the top-left of the video container.
+- **Integrated UI**: A faint speed indicator (e.g., `1.1x`) appears in the top-left of the video container. Hover it to reveal **+** and **−** buttons for quick 1x jumps (or 0.1x steps when at or below 1x).
 - **Minimalist Design**: Starts at 15% opacity. Pulses to 90% when speed changes, then fades back.
 - **Glassmorphism**: Uses background blur to remain readable over any video content.
 - **Global Tab Sync**: Adjusting the speed affects all videos within the current tab (perfect for feeds).
